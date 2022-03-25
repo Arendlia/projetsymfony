@@ -6,7 +6,7 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
@@ -14,6 +14,58 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+       
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+            <div class="container-fluid">
+              <a class="navbar-brand mr-auto" href="#"><img src="{{asset('images/logo.png')}}" alt="logo"</a>
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                  <ul class="navbar-nav mr-auto">
+                    <a href="#" class="nav-item nav-link active">Nos Produits</a>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Catégories
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Consoles</a></li>
+                        <li><a class="dropdown-item" href="#">Rétro</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Jeux PS5</a></li>
+                        <li><a class="dropdown-item" href="#">Jeux XBOX ONE</a></li>
+                        <li><a class="dropdown-item" href="#">Jeux SWITCH</a></li>
+                        <li><a class="dropdown-item" href="#">Jeux PC</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  
+                </div>
+                
+                <div class="navbar-nav ms-auto">
+                  <form class="d-flex flex-row-reverse ">
+                    <input class="form-control " type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+                    <a href="#" class="nav-item nav-link">Login</a>
+                </div>
+            </div>
+            </div>
+          </nav>
+        {% block body %}
+        {% endblock %}
+        {% block footer %}
+        <!-- Footer -->
+        <footer class="text-center text-white fixed-bottom" style="background-color: #21081a;">
+          <!-- Grid container -->
+          <div class="container p-4"></div>
+          <!-- Grid container -->
+        
+          <!-- Copyright -->
+          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+          </div>
+          <!-- Copyright -->
+        </footer>
+        {% endblock %}
     </body>
 </html>

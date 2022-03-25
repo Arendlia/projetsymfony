@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+{% block stylesheets %} 
+{{parent()}}
+{%endblock%}
+{%block header %}
+{{parent()}}
+{%endblock%}
+{% block body %}
+<div class="accueil">
+    <img class="img-fluid position-absolute" src="images/pexels-pixabay-275033.jpg">
+    <div class="position-absolute mt-5 mx-5">
+        <h1 class="mt-5 mx-5 text-light">Achète tes jeux moins cher !</h1>
+        <button type="button"  href="#" class="btn btn-light btn-lg mt-5 mx-5">Connecte toi !</button>
+    </div>
+</div>
+
+{% endblock %}
