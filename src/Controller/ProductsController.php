@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class ProductsController extends AbstractController
 {
     #[Route('/products', name: 'app_products')]
@@ -36,6 +37,7 @@ class ProductsController extends AbstractController
             $entityManagerInterface->flush();
 
             $this->addFlash('success', 'Produit enregistré !');
+            return $this->redirectToRoute('app_home');
         }
         return $this->render('products/create.html.twig', [
             'produitForm' => $form->createView()
