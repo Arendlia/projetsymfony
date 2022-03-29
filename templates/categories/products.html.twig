@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{categorie.global}}{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1> {{categorie.global}} </h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for product in products %}
+      <div class="col">
+          <div class="card h-100 pt-4">
+              <img src="{{ (product.image ? vich_uploader_asset(product) : asset('images/gameboy.jpg'))|imagine_filter('product_thumbnail')}}" alt="{{ product.name }}" class="card-img-top">
+              <div class="card-body">
+                  <h5 class="card-title">{{product.name}}</h5>
+                  <p class="card-text">{{product.description}}</p>
+                </div>
+              <div class="card-footer">
+                <small class="text-muted">Last updated 3 mins ago</small>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endblock %}

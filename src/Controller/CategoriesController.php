@@ -19,6 +19,17 @@ class CategoriesController extends AbstractController
             'controller_name' => 'CategoriesController',
         ]);
     }
+
+    #[Route('/categories/{id}', name: 'app_products_categories')]
+    public function showone(Categories $categories): Response
+    {
+        $products = $categories->getProduits();
+        return $this->render('categories/products.html.twig', [
+            'products' => $products,
+            'categorie'=> $categories
+        ]);
+    }
+
     #[Route('/createcategories', name: 'app_create_categorie')]
     public function create(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
