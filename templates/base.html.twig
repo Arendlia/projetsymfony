@@ -27,17 +27,11 @@
                         Catégories
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="{{path('app_products')}}">Consoles</a></li>
-                        <li><a class="dropdown-item" href="{{path('app_products')}}">Rétro</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{{path('app_products_categories')}}">Jeux PS4</a></li>
-                        <li><a class="dropdown-item" href="{{path('app_products')}}">Jeux PS5</a></li>
-                        <li><a class="dropdown-item" href="{{path('app_products')}}">Jeux XBOX ONE</a></li>
-                        <li><a class="dropdown-item" href="{{path('app_products')}}">Jeux SWITCH</a></li>
-                        <li><a class="dropdown-item" href="{{path('app_products')}}">Jeux PC</a></li>
+                        {% for globalcategorie in globalcategories %}
+                        <li><a class="dropdown-item" href="{{path('app_products_categories',{id: globalcategorie.id})}}">{{globalcategorie.global}}</a></li>
+                     
+                        {% endfor %} 
                       </ul>
-                    </li>
-                  </ul>
                   
                 </div>
                 
@@ -46,7 +40,7 @@
                     <input class="form-control " type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                   </form>
-                    <a href="#" class="nav-item nav-link">Login</a>
+                    <a href="{{path('app_login')}}" class="nav-item nav-link">Login</a>
                 </div>
             </div>
             </div>
