@@ -62,7 +62,8 @@ class ProductsController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
         return $this->render('products/edit.html.twig', [
-            'produitForm' => $form->createView()
+            'produitForm' => $form->createView(),
+            'products' => $products
         ]);
     }
 

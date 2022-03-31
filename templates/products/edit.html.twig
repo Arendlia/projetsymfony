@@ -7,7 +7,7 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-
+{% if is_granted('ROLE_USER') and products.user == app.user or is_granted('ROLE_ADMIN') %}
 <div class=".container-md m-5 ">
     <h1> Edition d'une annonce </h1>
     <div class='jumbotron m-5 '>
@@ -17,4 +17,9 @@
         {{form_end(produitForm)}}
         </div>
 </div>
+{%else%}
+<div class=".container-md m-5 ">
+<h1> Vous n'avez pas la permission d'éditer les annonces des autres ! </h1>
+</div>
+{%endif%}
 {% endblock %}
