@@ -3,20 +3,22 @@
 {% block title %}{{categorie.global}}{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
-    <h1> {{categorie.global}} </h1>
+<div class="container mt-5 mb-5">
+    <h1 class="p-3"> <em class="bi bi-joystick"></em> {{categorie.global}} </h1>
     <div class="row row-cols-1 row-cols-md-3 g-4">
       {% for product in products %}
       <div class="col">
-          <div class="card h-100 pt-4">
+          <div class="card shadow-lg p-3 mb-5 bg-body rounded h-100 pt-4">
+            <a href="{{path('app_products_details',{id: product.id})}}" class="text-decoration-none text-dark">
               <img src="{{ (product.image ? vich_uploader_asset(product) : asset('images/gameboy.jpg'))|imagine_filter('product_thumbnail')}}" alt="{{ product.name }}" class="card-img-top">
               <div class="card-body">
                   <h5 class="card-title">{{product.name}}</h5>
-                  <p class="card-text">{{product.description}}</p>
+                  <p class="card-text">{{product.description|truncate(100,'...',true)}}</p>
+                </a>
                   {% if is_granted('ROLE_USER') and product.user == app.user or is_granted('ROLE_ADMIN') %}
-                  <a href="{{path('app_edit_products',{id: product.id})}}" class="btn btn-primary">Edit</a>
-                  <a href="{{path('app_products_delete',{id: product.id})}}" class="btn btn-primary">Delete</a>
-            {% endif %}
+                  <a href="{{path('app_edit_products',{id: product.id})}}" class="btn btn-dark">Edit</a>
+                  <a href="{{path('app_products_delete',{id: product.id})}}" class="btn btn-danger">Delete</a>
+              {% endif %}
                 </div>
               <div class="card-footer">
                 <small class="text-muted">{{product.updatedAt|date("d/m/Y")}}</small>

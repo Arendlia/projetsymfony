@@ -25,7 +25,7 @@ class Produit
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $image;
 
-    #[ORM\ManyToOne(targetEntity: categories::class, inversedBy: 'produits')]
+    #[ORM\ManyToOne(targetEntity: Categories::class, inversedBy: 'produits')]
     #[ORM\JoinColumn(nullable: false)]
     private $categorie;
 
@@ -79,12 +79,12 @@ class Produit
         return $this;
     }
 
-    public function getCategorie(): ?categories
+    public function getCategorie(): ?Categories
     {
         return $this->categorie;
     }
 
-    public function setCategorie(?categories $categorie): self
+    public function setCategorie(?Categories $categorie): self
     {
         $this->categorie = $categorie;
 
