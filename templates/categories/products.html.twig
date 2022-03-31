@@ -13,9 +13,13 @@
               <div class="card-body">
                   <h5 class="card-title">{{product.name}}</h5>
                   <p class="card-text">{{product.description}}</p>
+                  {% if is_granted('ROLE_USER') and product.user == app.user or is_granted('ROLE_ADMIN') %}
+                  <a href="{{path('app_edit_products',{id: product.id})}}" class="btn btn-primary">Edit</a>
+                  <a href="{{path('app_products_delete',{id: product.id})}}" class="btn btn-primary">Delete</a>
+            {% endif %}
                 </div>
               <div class="card-footer">
-                <small class="text-muted">Last updated 3 mins ago</small>
+                <small class="text-muted">{{product.updatedAt|date("d/m/Y")}}</small>
               </div>
             </div>
           </div>

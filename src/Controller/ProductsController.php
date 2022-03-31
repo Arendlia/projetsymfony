@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 class ProductsController extends AbstractController
 {
     #[Route('/products', name: 'app_products')]
@@ -32,10 +31,9 @@ class ProductsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $product->setUser($this->getUser());
             $entityManagerInterface->persist($product);
             $entityManagerInterface->flush();
-
             $this->addFlash('success', 'Produit enregistré !');
             return $this->redirectToRoute('app_home');
         }
