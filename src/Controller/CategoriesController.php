@@ -12,13 +12,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategoriesController extends AbstractController
 {
-    #[Route('/categories', name: 'app_categories')]
+   /* #[Route('/categories', name: 'app_categories')]
     public function index(): Response
     {
         return $this->render('categories/index.html.twig', [
             'controller_name' => 'CategoriesController',
         ]);
-    }
+    }*/
 
     #[Route('/categories/{id}', name: 'app_products_categories')]
     public function showone(Categories $categories): Response
@@ -30,7 +30,7 @@ class CategoriesController extends AbstractController
         ]);
     }
 
-    #[Route('/createcategories', name: 'app_create_categorie')]
+    /*#[Route('/createcategories', name: 'app_create_categorie')]
     public function create(Request $request, EntityManagerInterface $entityManagerInterface): Response
     {
         $categorie = new Categories;
@@ -89,5 +89,5 @@ class CategoriesController extends AbstractController
         $this->addFlash('success', 'Catégorie supprimée !');
         return $this->redirectToRoute('app_home');
     }
-
+*/
 }

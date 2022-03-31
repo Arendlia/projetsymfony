@@ -23,7 +23,7 @@
                   <ul class="navbar-nav mr-auto">
                     <a href="{{path('app_products')}}" class="nav-item nav-link active">Nos Produits</a>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="{{path('app_categories')}}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Catégories
                       </a>
                       <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -49,6 +49,9 @@
                     <li class="nav-item">
                       <a class="nav-link text-white" href="{{path('app_logout')}}">Déconnexion</a>
                     </li>
+                  {% endif %}
+                  {%if is_granted('ROLE_ADMIN')%}
+                    <a href="{{path('admin')}}" class="nav-item nav-link">Dashboard</a>
                   {% endif %}
                 </div>
             </div>
