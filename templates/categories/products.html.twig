@@ -13,7 +13,7 @@
               <img src="{{ (product.image ? vich_uploader_asset(product) : asset('images/gameboy.jpg'))|imagine_filter('product_thumbnail')}}" alt="{{ product.name }}" class="card-img-top">
               <div class="card-body">
                   <h5 class="card-title">{{product.name}}</h5>
-                  <p class="card-text">{{product.description|truncate(100,'...',true)}}</p>
+                  <p class="card-text">{{product.description|u.truncate(20,'...',false)}}</p>
                 </a>
                   {% if is_granted('ROLE_USER') and product.user == app.user or is_granted('ROLE_ADMIN') %}
                   <a href="{{path('app_edit_products',{id: product.id})}}" class="btn btn-dark">Edit</a>

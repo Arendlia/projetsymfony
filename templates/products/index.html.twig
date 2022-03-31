@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="container mt-5">
-    <h1 class="p-3"> <i class="bi bi-joystick"></i> NOUVEAUTES <span class="badge bg-dark">New</span></h1>
+    <h1 class="p-3"> <i class="bi bi-joystick"></i> NOS PRODUITS <span class="badge bg-dark">Enjoy !</span></h1>
     <div class="row row-cols-1 row-cols-md-3 g-4 mt-3 mb-5">
       {% for product in products %}
       <div class="col">
@@ -13,7 +13,7 @@
               <img src="{{ (product.image ? vich_uploader_asset(product) : asset('images/gameboy.jpg'))|imagine_filter('product_thumbnail')}}" alt="{{ product.name }}" class="card-img-top">
               <div class="card-body">
                   <h5 class="card-title">{{product.name}}</h5>
-                  <p class="card-text mb-2">{{product.description}}</p>
+                  <p class="card-text mb-2">{{product.description|u.truncate(20,'...',false)}}</p>
             </a>
             {% if is_granted('ROLE_USER') and product.user == app.user or is_granted('ROLE_ADMIN') %}
                   <a href="{{path('app_edit_products',{id: product.id})}}" class="btn btn-dark">Edit</a>

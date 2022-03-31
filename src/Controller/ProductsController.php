@@ -13,9 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductsController extends AbstractController
 {
+    
     #[Route('/products', name: 'app_products')]
     public function index(ProduitRepository $produitRepository): Response
     {
+        
         $products = $produitRepository->findAll();
         return $this->render('products/index.html.twig', [
             'products' => $products
@@ -59,8 +61,8 @@ class ProductsController extends AbstractController
             $this->addFlash('success', 'Produit modifié avec succès !');
             return $this->redirectToRoute('app_home');
         }
-        return $this->render('products/create.html.twig', [
-            'productsForm' => $form->createView()
+        return $this->render('products/edit.html.twig', [
+            'produitForm' => $form->createView()
         ]);
     }
 

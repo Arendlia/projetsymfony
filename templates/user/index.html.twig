@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    {% if is_granted('ROLE_USER')%}
+    <h1> Bonjour {{app.user.username}} et bienvenue dans ton espace membre </h1>
+    <p> Ton addresse mail : {{app.user.username}}</p>
+    <h2> Tes produits </h2>
+    <ul class="list-group">
+    {%for products in app.user.products %}
+    <li class="list-group-item"><a href="{{path('app_products_details',{id: products.id})}}" class="text-decoration-none text-dark"> {{products.name}}</a>
+        <div class="ms-auto">
+        <a href="{{path('app_edit_products',{id: products.id})}}" class="btn btn-dark">Edit</a>
+        <a href="{{path('app_products_delete',{id: products.id})}}" class="btn btn-danger">Delete</a>
+        </div>
+</li>
+    {% endfor %}
+    </ul>
+    {%endif%}
+</div>
+{% endblock %}
