@@ -6,6 +6,7 @@ use App\Entity\Produit;
 use App\Form\ProduitType;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\ProduitRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -74,13 +75,17 @@ class ProductsController extends AbstractController
             'products' => $products
         ]);
     }
-    #[Route('/delete-products/{id}', name: 'app_products_delete')]
+
+     #[Route('/delete-products/{id}', name: 'app_products_delete')]
     public function delete(EntityManagerInterface $entityManagerInterface, Produit $produit): Response
     {
+        if ($this->isGranted('ROLE_USER') && $produit->getUser() == $this->getUser() || $this->isGranted('ROLE_ADMIN')){
         $entityManagerInterface->remove($produit);
         $entityManagerInterface->flush();
         $this->addFlash('success', 'Produit supprimé !');
         return $this->redirectToRoute('app_home');
+        }
+        else return $this->redirectToRoute('app_home');
     }
 
 }

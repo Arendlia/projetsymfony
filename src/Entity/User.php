@@ -27,8 +27,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string')]
     private $password;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Produit::class)]
+   
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Produit::class, orphanRemoval: true)]
     private $products;
 
     #[ORM\Column(type: 'integer', nullable: true)]
