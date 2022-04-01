@@ -9,6 +9,7 @@
 </style>
 
 <div class="container m-5 ">
+    {% if is_granted('ROLE_USER') %}
     <h1> Création d'une annonce </h1>
     <div class='jumbotron m-5'>
         {{form_start(produitForm)}}
@@ -16,6 +17,7 @@
         <button formnovalidate class="btn btn-dark">Enregistrer</button>
         {{form_end(produitForm)}}
         </div>
+    {%endif%}
 </div>
 {% endblock %}
 

@@ -5,3 +5,12 @@ body {
     background: rgb(211,211,211);
 background: linear-gradient(0deg, rgba(211,211,211,1) 0%, rgba(255,255,255,1) 50%);
 }
+
+.telephone {
+    display: none;
+}
+  @include media-breakpoint-up(sm) {
+    .telephone {
+      display: block;
+    }
+}

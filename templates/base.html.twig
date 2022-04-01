@@ -56,6 +56,62 @@
             </div>
             </div>
           </nav>
+
+
+
+
+         <!-- the collapsing menu -->
+         <div class="telephone">
+         <div class="collapse telephone" id="navbarToggleExternalContent">
+          <div class="bg-dark p-4">
+            <h5 class="text-white h4">Collapsed content</h5>
+            <div class="container-fluid">
+              <a class="navbar-brand mr-auto" href="{{path('app_home')}}"><img src="{{asset('images/logo.png')}}" alt="logo"</a>
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                  <ul class="navbar-nav mr-auto">
+                    <a href="{{path('app_products')}}" class="nav-item nav-link active"><i class="bi bi-dpad-fill"></i> Nos Produits</a>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-box2-fill"></i> Catégories
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% for globalcategorie in globalcategories %}
+                        <li><a class="dropdown-item" href="{{path('app_products_categories',{id: globalcategorie.id})}}">{{globalcategorie.global}}</a></li>
+                     
+                        {% endfor %} 
+                      </ul>
+                  </div>
+                
+                  {% if not app.user %}
+                    <a href="{{path('app_login')}}" class="nav-item nav-link"><i class="bi bi-box-arrow-in-right"></i> Connexion</a>
+                    {% else %}
+                    <li class="nav-item">
+                      <a class="nav-link text-white" aria-current="page" href="{{path('app_create_products')}}"><i class="bi bi-plus-circle"></i> Ajouter un produit</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="{{path('app_logout')}}"><i class="bi bi-door-open-fill"></i> Déconnexion</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="{{path('app_user')}}"><i class="bi bi-person-circle"></i> Mon Compte</a>
+                    </li>
+                  {% endif %}
+                  {%if is_granted('ROLE_ADMIN')%}
+                    <a href="{{path('admin')}}" class="nav-item nav-link"><i class="bi bi-pc-display-horizontal"></i> Dashboard</a>
+                  {% endif %}
+                </div>
+          </div>
+        
+        <nav class="navbar navbar-dark bg-dark">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </nav>
+    </div>
+  </div>
+    <!--/.nav-collapse -->
         {% block body %}
         {% endblock %}
         {% block footer %}

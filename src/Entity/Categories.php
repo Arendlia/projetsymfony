@@ -22,7 +22,7 @@ class Categories
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $detailed;
 
-    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Produit::class)]
+    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Produit::class, orphanRemoval: true)]
     private $produits;
 
     public function __construct()

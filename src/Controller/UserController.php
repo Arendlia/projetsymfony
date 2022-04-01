@@ -43,15 +43,24 @@ class UserController extends AbstractController
             'user' => $products
         ]);
     }
+    #[Route('/user/not_delete', name: 'app_user_not_delete')]
+    public function notdelete(): Response
+    {
+        return $this->render('user/delete.html.twig');
+    }
 
     #[Route('/user/delete/{id}', name: 'app_user_delete')]
     public function delete(EntityManagerInterface $entityManagerInterface, User $user): Response
     {
         if ($this->isGranted('ROLE_USER') && $user == $this->getUser() || $this->isGranted('ROLE_ADMIN')){
+            if($user->getProducts()){
+                return $this->redirectToRoute('app_user_not_delete');
+            }
+            else{
         $entityManagerInterface->remove($user);
         $entityManagerInterface->remove($user);
         $entityManagerInterface->flush();
-        $this->addFlash('success', 'Produit supprimé !');
+        $this->addFlash('success', 'Produit supprimé !');}
         return $this->redirectToRoute('app_home');}
         else{return $this->redirectToRoute('app_home');}
     }
